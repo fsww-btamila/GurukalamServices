@@ -67,9 +67,9 @@ app.post("/htmltoimage", (request, res) => {
             'image':base64Image
       }
 
+      return res.json(resultObj);
       });
 
-      return res.json(resultObj);
 });
 
 app.post("/imageConvert", (request, res) => {
@@ -248,9 +248,10 @@ app.post("/imageConvert", (request, res) => {
             'Msg':'Image created successfully...',
             'image':base64Image
             }
+            
+            return res.json(resultObj);
           });
 
-      return res.json(resultObj);
       }else{
         // res.setHeader('Access-Control-Allow-Origin', '*');
         console.log("htmltopdf");
