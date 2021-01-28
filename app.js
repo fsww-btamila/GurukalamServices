@@ -30,6 +30,47 @@ app.get("/", (req, res) => {
 });
 
 
+app.post("/htmltoimage", (request, res) => {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      let reqParam = request.body;
+      console.log("Welcome.....");
+      console.log("reqParam",reqParam);
+
+      // const htmlData = reqParam.htmlData;
+      const fileName = reqParam.fname;
+      const type = reqParam.type;
+
+      var resultObj = {};
+      var options = { format: 'A4', "type": "png" }; 
+
+      pdf.create(htmlData, options).toBuffer(function(err, buffer){
+
+      const base64Image = new Buffer.from(buffer).toString('base64');
+      // console.log(base64Image)
+      // const dataURI = 'data:application/pdf;base64,' + base64Image;
+      const dataURI = 'data:image/png;base64,' + base64Image;
+
+      var utc = (moment.utc()).valueOf();
+      var path = 'tmp/image/';
+      var fname = 'fileName' +'_'+utc+'.png';
+      var fileLocation = path + fname;
+
+      fs.writeFile(fileLocation, base64Image, 'base64', function(err) {
+            if (err) { console.log(err) } else {
+            console.log("Image Uploaded successfully..")
+
+            }
+      });
+
+      resultObj = {
+            'Msg':'Image created successfully...',
+            'image':base64Image
+      }
+      
+      });
+
+      return res.json(resultObj);
+};
 
 app.post("/imageConvert", (request, res) => {
       res.setHeader('Access-Control-Allow-Origin', '*');
@@ -205,7 +246,7 @@ app.post("/imageConvert", (request, res) => {
 
             resultObj = {
             'Msg':'Image created successfully...',
-            'image':dataURI
+            'image':base64Image
             }
           });
 
