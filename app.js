@@ -66,11 +66,11 @@ app.post("/htmltoimage", (request, res) => {
             'Msg':'Image created successfully...',
             'image':base64Image
       }
-      
+
       });
 
       return res.json(resultObj);
-};
+});
 
 app.post("/imageConvert", (request, res) => {
       res.setHeader('Access-Control-Allow-Origin', '*');
