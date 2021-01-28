@@ -36,23 +36,23 @@ app.post("/htmltoimage", (request, res) => {
       console.log("Welcome.....");
       console.log("reqParam",reqParam);
 
-      // const htmlData = reqParam.htmlData;
+      const htmlData = reqParam.htmlData;
       const fileName = reqParam.fname;
       const type = reqParam.type;
 
       var resultObj = {};
-      var options = { format: 'A4', "type": "png" }; 
+      var options = { format: 'A4', "type": "jpeg" }; 
 
       pdf.create(htmlData, options).toBuffer(function(err, buffer){
 
       const base64Image = new Buffer.from(buffer).toString('base64');
       // console.log(base64Image)
       // const dataURI = 'data:application/pdf;base64,' + base64Image;
-      const dataURI = 'data:image/png;base64,' + base64Image;
+      // const dataURI = 'data:image/png;base64,' + base64Image;
 
       var utc = (moment.utc()).valueOf();
       var path = 'tmp/image/';
-      var fname = 'fileName' +'_'+utc+'.png';
+      var fname = 'fileName' +'_'+utc+'.jpeg';
       var fileLocation = path + fname;
 
       fs.writeFile(fileLocation, base64Image, 'base64', function(err) {
