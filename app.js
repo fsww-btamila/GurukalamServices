@@ -56,13 +56,13 @@ app.post("/htmltopdf", (request, res) => {
 
       fs.writeFile(fileLocation, base64Image, 'base64', function(err) {
             if (err) { console.log(err) } else {
-            console.log("Image Uploaded successfully..")
+            console.log("PDF Uploaded successfully..")
 
             }
       });
 
       resultObj = {
-            'Msg':'Image created successfully...',
+            'Msg':'PDF created successfully...',
             'image':base64Image
       }
 
@@ -82,7 +82,7 @@ app.post("/htmltoimage", (request, res) => {
       const type = reqParam.type;
 
       var resultObj = {};
-      var options = { format: 'A4', "type": "jpeg" }; 
+      var options = { format: 'Letter', "type": "jpeg" }; 
 
       pdf.create(htmlData, options).toBuffer(function(err, buffer){
 
