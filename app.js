@@ -82,7 +82,7 @@ app.post("/htmltoimage", (request, res) => {
       const type = reqParam.type;
 
       var resultObj = {};
-      var options = { format: 'Letter', "type": "jpeg", "quality": "75" }; 
+      var options = { format: 'A4', "type": "jpeg", "quality": "75" }; 
 
       pdf.create(htmlData, options).toBuffer(function(err, buffer){
 
