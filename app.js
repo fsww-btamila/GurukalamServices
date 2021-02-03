@@ -82,7 +82,20 @@ app.post("/htmltoimage", (request, res) => {
       const type = reqParam.type;
 
       var resultObj = {};
-      var options = { format: 'A4', "type": "png", "quality": "75" }; 
+      var options = {
+          format: 'A4',
+          border: {
+              "top": "0.2in", // default is 0, units: mm, cm, in, px
+              "right": "0.2in",
+              "bottom": "0.2in",
+              "left": "0.2in"
+          },
+          "height": "11in", // allowed units: mm, cm, in, px
+          "width": "8.5in",
+          "type": "png", 
+          "quality": "75"
+      };
+      // var options = { "width": "8in",  "height": "10.5in",  format: 'A4', "type": "png", "quality": "75"}; 
 
       pdf.create(htmlData, options).toBuffer(function(err, buffer){
 
@@ -265,8 +278,20 @@ app.post("/imageConvert", (request, res) => {
             </body>\
             </html>'; 
           // var html = fs.readFileSync(htmlData, 'utf8');
-            var options = { format: 'A4', "type": "png", "quality": "75" }; 
-             
+            // var options = { format: 'A4', "type": "png", "quality": "75" }; 
+            var options = {
+                format: 'A4',
+                border: {
+                    "top": "0.2in", // default is 0, units: mm, cm, in, px
+                    "right": "0.2in",
+                    "bottom": "0.2in",
+                    "left": "0.2in"
+                },
+                "height": "11in", // allowed units: mm, cm, in, px
+                "width": "8.5in",
+                "type": "png", 
+                "quality": "75"
+            };
             pdf.create(htmlData, options).toBuffer(function(err, buffer){
 
             const base64Image = new Buffer.from(buffer).toString('base64');
