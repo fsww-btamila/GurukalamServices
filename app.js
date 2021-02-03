@@ -40,7 +40,18 @@ app.post("/htmltopdf", (request, res) => {
       const type = reqParam.type;
 
       var resultObj = {};
-      var options = { format: 'A4', "type": "pdf" }; 
+      // var options = { format: 'A4', "type": "pdf" }; 
+      var options = {
+          format: 'Letter',
+          border: {
+              "top": "0.2in", // default is 0, units: mm, cm, in, px
+              "right": "0.2in",
+              "bottom": "0.2in",
+              "left": "0.2in"
+          },
+          "height": "11in", // allowed units: mm, cm, in, px
+          "width": "8.5in"
+      };
 
       pdf.create(htmlData, options).toBuffer(function(err, buffer){
 
@@ -83,7 +94,7 @@ app.post("/htmltoimage", (request, res) => {
 
       var resultObj = {};
       var options = {
-          format: 'A4',
+          format: 'Letter',
           border: {
               "top": "0.2in", // default is 0, units: mm, cm, in, px
               "right": "0.2in",
@@ -280,7 +291,7 @@ app.post("/imageConvert", (request, res) => {
           // var html = fs.readFileSync(htmlData, 'utf8');
             // var options = { format: 'A4', "type": "png", "quality": "75" }; 
             var options = {
-                format: 'A4',
+                format: 'Letter',
                 border: {
                     "top": "0.2in", // default is 0, units: mm, cm, in, px
                     "right": "0.2in",
