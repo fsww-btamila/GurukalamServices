@@ -298,8 +298,8 @@ app.post("/imageConvert", (request, res) => {
                     "bottom": "0.2in",
                     "left": "0.2in"
                 },
-                "height": "11in", // allowed units: mm, cm, in, px
-                "width": "8.5in",
+                "height": "800px", // allowed units: mm, cm, in, px
+                "width": "1000px",
                 "type": "png", 
                 "quality": "75"
             };
