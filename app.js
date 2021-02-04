@@ -363,6 +363,12 @@ app.post("/htmltojpeg", (request, res) => {
           // link.download = 'my-image-name.jpeg';
           // link.href = dataUrl;
           // link.click(); 
+          resultObj = {
+            'Msg':'Image created successfully...',
+            'image':dataUrl
+            }
+            
+            return res.json(resultObj);
         
       });
 
