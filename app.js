@@ -10,6 +10,9 @@ const fs = require('fs');
 
 const url = require('url');
 
+const convertHI = require('html-to-image');
+
+
  
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
@@ -336,6 +339,32 @@ app.post("/imageConvert", (request, res) => {
       return res.json(resultObj);
 
       }
+
+
+});
+
+app.post("/htmltojpeg", (request, res) => {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      let reqParam = request.body;
+      console.log("Welcome.....");
+      console.log("reqParam",reqParam);
+
+      const htmlData ="<div id='my-node'><b>நடத்தப்பட்டது</b></div>";
+      // const htmlData = reqParam.htmlData;
+      const fileName = reqParam.fname;
+      const type = reqParam.type;
+
+      var resultObj = {};
+
+      convertHI.toJpeg(htmlData, { quality: 0.95 })
+        .then(function (dataUrl) {
+            console.log("---------", dataUrl);
+          // var link = document.createElement('a');
+          // link.download = 'my-image-name.jpeg';
+          // link.href = dataUrl;
+          // link.click(); 
+        
+      });
 
 
 });
